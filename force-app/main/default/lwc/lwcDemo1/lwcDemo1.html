@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Basic Details" icon-name="custom:custom14">
+   <div class="slds-m-around_medium">
+     <lightning-input name='firstName' placeholder="Enter First Name.." label="First Name" onchange={handleName}>
+     </lightning-input>  
+     
+     <lightning-input name = 'LastName' placeholder="Enter Last Name.." label="Last Name" onchange={handleName}>
+     </lightning-input> 
+     
+     <lightning-input type="number" name="Age" label="Enter a Age" onchange={handleAge}></lightning-input>
+     
+     <p class="slds-m-top_medium">Uppercased Full Name: {uppercasedFullName}</p>
+
+     <p class="slds-m-top_medium">My Age is {age}</p>
+    </div>
+
+    <div class="slds-var-m-around_medium">
+        <lightning-input type="checkbox" label="Show Salary Detail" onchange={handleSalaryDetails}>
+        </lightning-input>
+        <div class="slds-var-m-vertical_medium">
+            <template if:true={showSalary}>
+               <div class="slds-m-around_medium">
+                    salary is {salary}
+                </div>
+            </template>
+        </div>
+    </div>
+    </lightning-card>
+</template>

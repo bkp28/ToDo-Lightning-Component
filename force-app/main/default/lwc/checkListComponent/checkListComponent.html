@@ -1,0 +1,72 @@
+<template>
+    <lightning-card title={appName} icon-name="action:new_task">
+        <template if:true={dataLoadProgress}>
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </template>
+        <template if:false={checkListDetail}>
+            <lightning-layout horizontal-align="spread">
+                <lightning-layout-item size="8" padding="horizontal-small" flexibility="grow">
+                    <lightning-input type="text" placeholder="Create New CheckList" variant="label-hidden"
+                        label="New CheckList" value={newCheckList} onchange={handleNewCheckList} autocomplete="off"
+                        required>
+                    </lightning-input><br>
+                    <lightning-combobox name="checklist type" label="type" variant="label-hidden" value={typeValue}
+                        placeholder="-- Select a checklist type --" options={checkListTypes}
+                        onchange={handleCheckListType} required></lightning-combobox><br>
+
+                    <lightning-button variant="brand" label="Create New CheckList" title="Create New CheckList"
+                        icon-name="utility:add" icon-position="left" class="slds-m-left_x-small"
+                        onclick={createNewCheckList}>
+                    </lightning-button>
+                    <lightning-button variant="destructive-text" label="Reset" title="Reset" onclick={handleReset}
+                        class="slds-m-left_x-small">
+                    </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+        <template if:true={checkListDetail}>
+            <lightning-layout horizontal-align="spread">
+                <lightning-layout-item padding="around-small" size="12">
+                    <ul class="slds-has-dividers_around-space">
+                        <template if:true={lstToDoItems}>
+                            <template for:each={lstToDoItems} for:item="toDoTask">
+                                <li class="slds-item" key={toDoTask.id}>
+                                    <lightning-layout vertical-align="center" horizontal-align="spread">
+                                        <lightning-layout-item size="8" padding="horizontal-small" flexibility="grow">
+                                            {toDoTask.description}
+                                        </lightning-layout-item>
+                                        <lightning-layout-item padding="horizontal-small" flexibility="grow">
+                                            <lightning-input label="taskCheckBox" variant="label-hidden"
+                                                class="slds-p-left_xx-large" type="checkbox" checked={toDoTask.status}>
+                                            </lightning-input>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item padding="horizontal-small" flexibility="auto">
+                                            <lightning-button-icon icon-name="utility:delete" variant="brand"
+                                                alternative-text="Delete Task" class="slds-m-left_xx-small"
+                                                title="Delete Task" onclick={deleteTask} name={toDoTask.id}>
+                                            </lightning-button-icon>
+                                        </lightning-layout-item>
+                                    </lightning-layout>
+                                </li>
+                            </template>
+                        </template>
+                    </ul>
+                </lightning-layout-item>
+            </lightning-layout>
+            <p slot="footer">
+                <lightning-layout pull-to-boundary="small">
+                    <lightning-layout-item size="8" padding="horizontol-small" flexibility="grow">
+                        <lightning-input type="text" placeholder="Add new task..." variant="label-hidden"
+                            label="new task" value={newTask} onchange={handleNewTask} autocomplete="off" required>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="horizontol-small" flexibility="auto">
+                        <lightning-button variant="brand" label="Add" title="Add Task" icon-name="utility:add"
+                            icon-position="right" class="slds-m-left_x-small" onclick={addTaskToList}>
+                        </lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </p>
+        </template>
+    </lightning-card>
+</template>

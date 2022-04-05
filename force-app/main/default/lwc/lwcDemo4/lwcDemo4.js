@@ -18,7 +18,7 @@ import insertNewCheckList from '@salesforce/apex/TaskController.insertNewCheckLi
 
 export default class LwcDemo4 extends LightningElement {
     newTask='';
-    @api appName;
+    @api appName='CheckList App';
     dataLoadProgress = true;
     @track newCheckList='';
 
@@ -31,7 +31,7 @@ export default class LwcDemo4 extends LightningElement {
     @track typeValue;
     @track isCheckListAvailable=false;
     
-    ToDoTaskResponse; // variable will hold response and will be used to synch records between salesforce and UI
+    @track ToDoTaskResponse; // variable will hold response and will be used to synch records between salesforce and UI
 
     //When component loads fetch user specific checklist details based on that render correct template from markup
      connectedCallback(){
