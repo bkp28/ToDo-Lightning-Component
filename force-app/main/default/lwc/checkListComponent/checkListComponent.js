@@ -19,7 +19,7 @@ export default class CheckListComponent extends LightningElement {
   @track checkListTypes;
   @track typeValue;
   @track isCheckListAvailable = false;
-  @track ToDoTaskResponse; // variable will hold response and will be used to synch records between salesforce and UI
+  @track ToDoTaskResponse;
 
   connectedCallback() {
     this.fetchCheckListDetails();
